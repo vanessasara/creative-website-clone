@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────
+   BREAKPOINT VARIANTS — LOCKED
+   mobile:          max-width 479px
+   mobileLandscape: max-width 767px
+   tablet:          max-width 991px
+   desktop:         min-width 992px
+   ────────────────────────────────────────────── */
+@custom-variant mobile (@media (max-width: 479px));
+@custom-variant mobileLandscape (@media (max-width: 767px));
+@custom-variant tablet (@media (max-width: 991px));
+@custom-variant desktop (@media (min-width: 992px));
+
+/* ──────────────────────────────────────────────
+   @font-face — Self-hosted. Each weight is a
+   separate face so GSAP per-character weight
+   animation resolves correctly at runtime.
+   ALL values LOCKED.
+   ────────────────────────────────────────────── */
+
+/* PP Neue Montreal */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Book.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Neue Montreal — Variable (used specifically on headings that need
+   continuous font-weight interpolation, e.g. the proximity effect) */
+@font-face {
+  font-family: 'PP Neue Montreal Variable';
+  src: url('/fonts/PPNeueMontreal-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Mondwest */
+@font-face {
+  font-family: 'PP Mondwest';
+  src: url('/fonts/PPMondwest-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rand Mono */
+@font-face {
+  font-family: 'Rand Mono';
+  src: url('/fonts/Rand-Mono-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rand Mono';
+  src: url('/fonts/Rand-Mono-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ──────────────────────────────────────────────
+   THEME — Tailwind v4 CSS-based config.
+   Overrides default font-sans / font-mono.
+   All 24 color hex values are LOCKED.
+   ────────────────────────────────────────────── */
+@theme inline {
+  /* Override Tailwind defaults */
+  --font-sans: 'PP Neue Montreal', sans-serif;
+  --font-mono: 'Rand Mono', monospace;
+
+  /* Custom font families */
+  --font-primary:  'PP Neue Montreal', sans-serif;
+  --font-display:  'PP Mondwest', sans-serif;
+
+  /* ── Colors — Base / Neutral ── */
+  --color-page-bg:      #080807;
+  --color-dark-surface: #292929;
+  --color-mid-gray:     #7d7d7d;
+  --color-light-gray:   #dcddde;
+  --color-off-white:    #f1f0ee;
+  --color-near-white:   #fcfcfc;
+
+  /* ── Colors — UI Accents ── */
+  --color-gold:         #ffb700;
+  --color-btn-border:   #515151;
+  --color-hover-bg:     #EAEAEA;
+  --color-hover-text:   #070707;
+  --color-overlay:      #262626;
+  --color-grid-border:  #0C0C0C;
+
+  /* ── Colors — Cool Tones ── */
+  --color-deep-dark:    #120c00;
+  --color-cream-light:  #fff6e5;
+  --color-sky-blue:     #47a0ff;
+  --color-yellow-gold:  #ffd900;
+  --color-deep-teal:    #265855;
+  --color-mid-teal:     #31726e;
+
+  /* ── Colors — Warm Tones ── */
+  --color-teal-green:   #193937;
+  --color-darkest-teal: #182b2a;
+  --color-pale-cream:   #fbf6c0;
+  --color-warm-beige:   #eee2cd;
+  --color-tan-sand:     #c4b59c;
+  --color-ochre:        #a58f69;
+}
+
+/* ──────────────────────────────────────────────
+   CSS CUSTOM PROPERTIES — duplicated here so
+   GSAP / canvas code can read them at runtime
+   via getComputedStyle without hardcoding.
+   ────────────────────────────────────────────── */
+:root {
+  --color-page-bg:      #080807;
+  --color-dark-surface: #292929;
+  --color-mid-gray:     #7d7d7d;
+  --color-light-gray:   #dcddde;
+  --color-off-white:    #f1f0ee;
+  --color-near-white:   #fcfcfc;
+  --color-gold:         #ffb700;
+  --color-btn-border:   #515151;
+  --color-hover-bg:     #EAEAEA;
+  --color-hover-text:   #070707;
+  --color-overlay:      #262626;
+  --color-grid-border:  #0C0C0C;
+  --color-deep-dark:    #120c00;
+  --color-cream-light:  #fff6e5;
+  --color-sky-blue:     #47a0ff;
+  --color-yellow-gold:  #ffd900;
+  --color-deep-teal:    #265855;
+  --color-mid-teal:     #31726e;
+  --color-teal-green:   #193937;
+  --color-darkest-teal: #182b2a;
+  --color-pale-cream:   #fbf6c0;
+  --color-warm-beige:   #eee2cd;
+  --color-tan-sand:     #c4b59c;
+  --color-ochre:        #a58f69;
+}
+
+/* ──────────────────────────────────────────────
+   BASE STYLES
+   ────────────────────────────────────────────── */
+body {
+  font-family: 'PP Neue Montreal', sans-serif;
+  background-color: #080807;
+  color: #fcfcfc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading specs — LOCKED: letter-spacing -3%, line-height 1.1em.
+   Apply .heading-specs to every h1/h2/display heading using PP Neue Montreal. */
+.heading-specs {
+  letter-spacing: -3%;
+  line-height: 1.1em;
+}
+
+/* ──────────────────────────────────────────────
+   GRID — 12-column breakout layout
+   Named lines: full-start / content-start /
+   content-end / full-end.  Gutter: 1rem LOCKED.
+   ────────────────────────────────────────────── */
+.grid-breakout {
+  display: grid;
+  grid-template-columns:
+    [full-start] 1fr
+    [content-start] repeat(12, 1fr)
+    [content-end] 1fr
+    [full-end];
+  gap: 1rem;
+}
+.span-full    { grid-column: full-start / full-end; }
+.span-content { grid-column: content-start / content-end; }
+
+/* ──────────────────────────────────────────────
+   NAV LINK HOVER — pure CSS, no JS.
+   Duration 0.5s + ease cubic-bezier(0.31, 0.75, 0.22, 1) are LOCKED.
+   ────────────────────────────────────────────── */
+.menu-heading-link {
+  transition: background-color 0.5s cubic-bezier(0.31, 0.75, 0.22, 1),
+              color            0.5s cubic-bezier(0.31, 0.75, 0.22, 1),
+              padding          0.5s cubic-bezier(0.31, 0.75, 0.22, 1);
+}
+.menu-heading-link:hover {
+  background-color: #EAEAEA;
+  color:            #070707;
+  padding-left:     0.333em;
+  padding-right:    0.333em;
+}
+.menu-heading-link:hover .menu-link-wrap {
+  border-top: 1px solid #ffb700;
+}
+
+/* ──────────────────────────────────────────────
+   BUTTON CSS TRANSITIONS — easing values LOCKED
+   ────────────────────────────────────────────── */
+.btn-transition {
+  transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1); /* ease-primary */
+}
+
+/* ──────────────────────────────────────────────
+   CONTAINER QUERIES — component-level responsive
+   independent of viewport width.
+   ────────────────────────────────────────────── */
+.container-query {
+  container-type: inline-size;
+}
+/* threshold-large  */ @container (min-width: 62em) { }
+/* threshold-medium */ @container (min-width: 48em) { }
+/* threshold-small  */ @container (min-width: 30em) { }
