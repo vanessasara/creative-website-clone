@@ -1,1 +1,205 @@
-function initPracticeSection(){function t(){gsap.utils.toArray(".practice_contain_inner.u-position-absolute").forEach(((t,o)=>{const e=.85,r=Math.pow(e,o+1);gsap.to(t,{scale:r,ease:"power2.out",transformOrigin:"center center",scrollTrigger:{trigger:".practice_contain_content",start:"top center",end:"bottom top",scrub:!0}})}))}t()}function initColorsSection(){function t(){const t=gsap.utils.toArray(".colors_visual_gradient"),o=["polygon(0 6%, 100% 40%, 100% 56%, 0 11%)","polygon(0 11%, 100% 56%, 100% 74%, 0 14%)","polygon(0 14%, 100% 74%, 100% 88%, 0 16%)","polygon(0 16%, 100% 88%, 100% 102%, 0 20%)","polygon(0 20%, 100% 102%, 100% 130%, 0 26%)","polygon(0 26%, 100% 130%, 100% 160%, 0 34%)"];t.forEach(((t,e)=>{gsap.fromTo(t,{clipPath:`polygon(0 ${6+5*e}%, 0 ${40+16*e}%, 0 ${56+18*e}%, 0 ${11+5*e}%)`},{clipPath:o[e],ease:"power2.out",scrollTrigger:{trigger:".colors_visual_wrap",start:`top ${70-8*e}%`,end:`top ${40-8*e}%`,scrub:1}})}))}t()}function initLayoutsSection(){function t(){function t(t){const r=`is-layout${t}`;if(n===r)return;const a=Flip.getState(e);o.classList.remove(n),o.classList.add(r),n=r,Flip.from(a,{duration:1,ease:"expo.inOut",stagger:{amount:.2,from:"start"},scale:!0})}const o=document.querySelector(".grids_flip_content"),e=document.querySelectorAll(".grids_flip_content > *"),r=document.querySelectorAll("[data-btn-layout]");let n="is-layout1";o.classList.add(n),r.forEach((o=>{o.addEventListener("click",(()=>{t(o.getAttribute("data-btn-layout"))}))}))}function o(){const t=document.querySelectorAll(".grids_flip_h1 path"),o=document.querySelector(".grids_flip_content");gsap.from(t,{yPercent:102,duration:1,ease:"ease-transition",stagger:.05,scrollTrigger:{trigger:o,start:"top bottom"}})}function e(){gsap.timeline({scrollTrigger:{trigger:".grids_flip_content",start:"top 80%",end:"bottom 20%",toggleActions:"play none none reset"}}).from(".button_main_wrap",{y:-30,opacity:0,duration:.6,stagger:.1,ease:"power2.out"}).to(".button_main_wrap",{borderColor:"#ffb700",duration:.05,stagger:.1}).to(".button_main_wrap",{borderColor:"#515151",duration:.08,stagger:.1}).to(".button_main_wrap",{borderColor:"#ffb700",duration:.04,stagger:.1}).to(".button_main_wrap",{borderColor:"#515151",duration:.06,stagger:.1}).to(".button_main_wrap",{borderColor:"#ffb700",duration:.03,stagger:.1}).to(".button_main_wrap",{borderColor:"#515151",duration:.5,stagger:.1,ease:"power1.out"})}o(),t(),e()}function initTypeSection(){function t(){gsap.matchMedia().add("(min-width: 992px)",(()=>{const t=document.querySelectorAll('[data-animate="font-weight"]'),o=300,e=800,r=300;let n=[];t.forEach((t=>{const o=new SplitText(t,{type:"chars"});n.push(...o.chars)})),document.addEventListener("mousemove",(t=>{const a=t.pageX,i=t.pageY;n.forEach((t=>{const n=t.getBoundingClientRect(),s=n.left+n.width/2+window.scrollX,c=n.top+n.height/2+window.scrollY,l=Math.sqrt(Math.pow(a-s,2)+Math.pow(i-c,2));let g=l<o?gsap.utils.mapRange(0,o,r,e,Math.max(0,o-l)):r;gsap.to(t,{fontWeight:g,duration:1,ease:"ease-transition"})}))}))}))}function o(){const t=document.querySelector('[data-sticker="wrap"]'),o=document.querySelectorAll('[data-sticker="item"]');t&&o.length&&o.forEach((o=>{Draggable.create(o,{bounds:t,dragResistance:.1,onPress(){gsap.to(this.target,{scale:1.2,rotation:gsap.utils.random(-30,30),filter:"drop-shadow(0px 10px 8px rgba(0,0,0,0.3))",duration:.1})},onRelease(){gsap.to(this.target,{scale:1,rotation:0,ease:"back.out(3)",filter:"drop-shadow(0px 0px 0px rgba(0,0,0,0))",duration:.2})}})}))}t(),o()}initPracticeSection(),initColorsSection(),initLayoutsSection(),initTypeSection();
+function initPracticeSection() {
+  function t() {
+    gsap.utils
+      .toArray('.practice_contain_inner.u-position-absolute')
+      .forEach((t, o) => {
+        const e = 0.85,
+          r = Math.pow(e, o + 1);
+        gsap.to(t, {
+          scale: r,
+          ease: 'power2.out',
+          transformOrigin: 'center center',
+          scrollTrigger: {
+            trigger: '.practice_contain_content',
+            start: 'top center',
+            end: 'bottom top',
+            scrub: !0,
+          },
+        });
+      });
+  }
+  t();
+}
+function initColorsSection() {
+  function t() {
+    const t = gsap.utils.toArray('.colors_visual_gradient'),
+      o = [
+        'polygon(0 6%, 100% 40%, 100% 56%, 0 11%)',
+        'polygon(0 11%, 100% 56%, 100% 74%, 0 14%)',
+        'polygon(0 14%, 100% 74%, 100% 88%, 0 16%)',
+        'polygon(0 16%, 100% 88%, 100% 102%, 0 20%)',
+        'polygon(0 20%, 100% 102%, 100% 130%, 0 26%)',
+        'polygon(0 26%, 100% 130%, 100% 160%, 0 34%)',
+      ];
+    t.forEach((t, e) => {
+      gsap.fromTo(
+        t,
+        {
+          clipPath: `polygon(0 ${6 + 5 * e}%, 0 ${40 + 16 * e}%, 0 ${56 + 18 * e}%, 0 ${11 + 5 * e}%)`,
+        },
+        {
+          clipPath: o[e],
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.colors_visual_wrap',
+            start: `top ${70 - 8 * e}%`,
+            end: `top ${40 - 8 * e}%`,
+            scrub: 1,
+          },
+        }
+      );
+    });
+  }
+  t();
+}
+function initLayoutsSection() {
+  function t() {
+    function t(t) {
+      const r = `is-layout${t}`;
+      if (n === r) return;
+      const a = Flip.getState(e);
+      (o.classList.remove(n),
+        o.classList.add(r),
+        (n = r),
+        Flip.from(a, {
+          duration: 1,
+          ease: 'expo.inOut',
+          stagger: { amount: 0.2, from: 'start' },
+          scale: !0,
+        }));
+    }
+    const o = document.querySelector('.grids_flip_content'),
+      e = document.querySelectorAll('.grids_flip_content > *'),
+      r = document.querySelectorAll('[data-btn-layout]');
+    let n = 'is-layout1';
+    (o.classList.add(n),
+      r.forEach((o) => {
+        o.addEventListener('click', () => {
+          t(o.getAttribute('data-btn-layout'));
+        });
+      }));
+  }
+  function o() {
+    const t = document.querySelectorAll('.grids_flip_h1 path'),
+      o = document.querySelector('.grids_flip_content');
+    gsap.from(t, {
+      yPercent: 102,
+      duration: 1,
+      ease: 'ease-transition',
+      stagger: 0.05,
+      scrollTrigger: { trigger: o, start: 'top bottom' },
+    });
+  }
+  function e() {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.grids_flip_content',
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reset',
+        },
+      })
+      .from('.button_main_wrap', {
+        y: -30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out',
+      })
+      .to('.button_main_wrap', {
+        borderColor: '#ffb700',
+        duration: 0.05,
+        stagger: 0.1,
+      })
+      .to('.button_main_wrap', {
+        borderColor: '#515151',
+        duration: 0.08,
+        stagger: 0.1,
+      })
+      .to('.button_main_wrap', {
+        borderColor: '#ffb700',
+        duration: 0.04,
+        stagger: 0.1,
+      })
+      .to('.button_main_wrap', {
+        borderColor: '#515151',
+        duration: 0.06,
+        stagger: 0.1,
+      })
+      .to('.button_main_wrap', {
+        borderColor: '#ffb700',
+        duration: 0.03,
+        stagger: 0.1,
+      })
+      .to('.button_main_wrap', {
+        borderColor: '#515151',
+        duration: 0.5,
+        stagger: 0.1,
+        ease: 'power1.out',
+      });
+  }
+  (o(), t(), e());
+}
+function initTypeSection() {
+  function t() {
+    gsap.matchMedia().add('(min-width: 992px)', () => {
+      const t = document.querySelectorAll('[data-animate="font-weight"]'),
+        o = 300,
+        e = 800,
+        r = 300;
+      let n = [];
+      (t.forEach((t) => {
+        const o = new SplitText(t, { type: 'chars' });
+        n.push(...o.chars);
+      }),
+        document.addEventListener('mousemove', (t) => {
+          const a = t.pageX,
+            i = t.pageY;
+          n.forEach((t) => {
+            const n = t.getBoundingClientRect(),
+              s = n.left + n.width / 2 + window.scrollX,
+              c = n.top + n.height / 2 + window.scrollY,
+              l = Math.sqrt(Math.pow(a - s, 2) + Math.pow(i - c, 2));
+            let g =
+              l < o ? gsap.utils.mapRange(0, o, r, e, Math.max(0, o - l)) : r;
+            gsap.to(t, { fontWeight: g, duration: 1, ease: 'ease-transition' });
+          });
+        }));
+    });
+  }
+  function o() {
+    const t = document.querySelector('[data-sticker="wrap"]'),
+      o = document.querySelectorAll('[data-sticker="item"]');
+    t &&
+      o.length &&
+      o.forEach((o) => {
+        Draggable.create(o, {
+          bounds: t,
+          dragResistance: 0.1,
+          onPress() {
+            gsap.to(this.target, {
+              scale: 1.2,
+              rotation: gsap.utils.random(-30, 30),
+              filter: 'drop-shadow(0px 10px 8px rgba(0,0,0,0.3))',
+              duration: 0.1,
+            });
+          },
+          onRelease() {
+            gsap.to(this.target, {
+              scale: 1,
+              rotation: 0,
+              ease: 'back.out(3)',
+              filter: 'drop-shadow(0px 0px 0px rgba(0,0,0,0))',
+              duration: 0.2,
+            });
+          },
+        });
+      });
+  }
+  (t(), o());
+}
+(initPracticeSection(),
+  initColorsSection(),
+  initLayoutsSection(),
+  initTypeSection());
